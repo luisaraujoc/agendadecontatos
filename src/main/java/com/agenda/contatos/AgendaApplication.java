@@ -21,7 +21,7 @@ public class AgendaApplication {
         if(opcao ==1){
             cadastrarContatos();
         }else{
-            listarContatos();
+            // listarContatos();
         }
 
 
@@ -46,11 +46,7 @@ public class AgendaApplication {
         sc.close();
     }
 
-    public static void listarContatos() throws SQLException {
-        System.out.println("Listando contatos...");
-        while(ContatosDAO.listaContatos().iterator().hasNext()){
-            System.out.println(ContatosDAO.listaContatos().iterator().next());
-        }
-        //ContatosDAO.listaContatos();
-    }
+    // public static void listarContatos() throws SQLException {
+    //     ContatosDAO.listaContatos();
+    // }
 }

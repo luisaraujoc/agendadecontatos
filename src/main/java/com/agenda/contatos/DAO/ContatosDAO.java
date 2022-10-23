@@ -33,31 +33,5 @@ public class ContatosDAO {
         }
     }
 
-    public static List<Contatos> listaContatos() throws SQLException{
-        List<Contatos> contatos = new ArrayList<Contatos>();
-        String sql = "SELECT * FROM contatos";
-
-
-        try {
-            ConnectionImpl conn = Connection.getConnection();
-            ClientPreparedStatement stmt = (ClientPreparedStatement) conn.prepareStatement(sql);
-            ResultSet rset = stmt.executeQuery(sql);
-            
-            
-            while(rset.next()){
-                int id = rset.getInt("id");
-                String nome = rset.getString("nome");
-                String telefone = rset.getString("telefone");
-                String email = rset.getString("email");
-                
-                contatos.add(new Contatos(id, nome, telefone, email));
-            }
-            return contatos;
-        } catch (SSLParamsException e) {
-            System.out.println("Erro ao listar contatos: " + e);
-            return null;
-        }finally{
-            Connection.closeConnection(Connection.getConnection());
-        }
-    }
+    
 }
