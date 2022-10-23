@@ -1,0 +1,4 @@
+digraph "com.agenda.contatos:agendadecontatos:war:1.0-SNAPSHOT" { 
+	"com.agenda.contatos:agendadecontatos:war:1.0-SNAPSHOT" -> "mysql:mysql-connector-java:jar:8.0.26:compile" ; 
+	"mysql:mysql-connector-java:jar:8.0.26:compile" -> "com.google.protobuf:protobuf-java:jar:3.11.4:compile" ; 
+ } 
