@@ -19,6 +19,8 @@ public class AgendaApplication {
         System.out.println("Escolha uma das opções abaixo:");
         System.out.println("1 - Cadastrar contato");
         System.out.println("2 - Listar contatos");
+        System.out.println("3 - Atualizar contato");
+        System.out.println("4 - Deletar contato");  
 
         int opcao = sc.nextInt();
 
@@ -28,26 +30,13 @@ public class AgendaApplication {
             System.out.println("| Contato cadastrado com sucesso! |");
             System.out.println("|----------------------------------------|\n\n");
             listarContatos();
-
-
-            // System.out.println("Contato cadastrado com sucesso!");
-            // System.out.println("Deseja cadastrar outro contato? (S/N)");
-            // String opcao2 = sc.next();
-            // if(opcao2.equals("S")){
-            //     cadastrarContatos();
-            // }else{
-            //     System.out.println("Obrigado por usar nossa agenda!");
-            // }
         }
         else if(opcao==2){
             listarContatos();
-            // System.out.println("Deseja cadastrar um contato? (S/N)");
-            // String opcao2 = sc.next();
-            // if(opcao2.equals("S")){
-            //     cadastrarContatos();
-            // }else{
-            //     System.out.println("Obrigado por usar nossa agenda!");
-            // }
+        }else if(opcao==3){
+            atualizarContato();
+        }else if(opcao==4){
+            deletarContato();
         }else {
             System.out.println("Opção inválida!");
         }
@@ -85,5 +74,40 @@ public class AgendaApplication {
             System.out.println("| Email: " + contato.getEmail());
             System.out.println("|-----------------------------------------|");
         }
+    }
+
+    public static void atualizarContato() throws SQLException{
+        listarContatos();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Digite o ID do contato que deseja atualizar: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        Contatos contato = ContatosDAO.getContatoById(id);
+
+        System.out.println("Digite o novo nome do contato: ");
+        contato.setNome(sc.nextLine());
+
+        System.out.println("Digite o novo telefone do contato: ");
+        contato.setTelefone(sc.nextLine());
+
+        System.out.println("Digite o novo email do contato: ");
+        contato.setEmail(sc.nextLine());
+
+        ContatosDAO.atualizarContato(contato);
+        listarContatos();
+        sc.close();
+    }
+
+    public static void deletarContato() throws SQLException{
+        listarContatos();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Digite o ID do contato que deseja deletar: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        ContatosDAO.deletarContato(id);
+        listarContatos();
+        sc.close();
     }
 }
