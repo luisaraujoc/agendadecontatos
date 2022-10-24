@@ -24,6 +24,11 @@ public class AgendaApplication {
 
         if(opcao==1){
             cadastrarContatos();
+            System.out.println("|----------------------------------------|");
+            System.out.println("| Contato cadastrado com sucesso! |");
+            System.out.println("|----------------------------------------|\n\n");
+            listarContatos();
+
 
             // System.out.println("Contato cadastrado com sucesso!");
             // System.out.println("Deseja cadastrar outro contato? (S/N)");
