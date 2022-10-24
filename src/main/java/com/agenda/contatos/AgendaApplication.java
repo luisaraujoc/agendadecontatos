@@ -8,6 +8,10 @@ import com.agenda.contatos.Model.Contatos;
 
 public class AgendaApplication {
     
+    /**
+     * @param args
+     * @throws SQLException
+     */
     public static void main(String[] args) throws SQLException {
         Scanner sc = new Scanner(System.in);
 
@@ -18,12 +22,12 @@ public class AgendaApplication {
 
         int opcao = sc.nextInt();
 
-        if(opcao ==1){
+        if(opcao==1){
             cadastrarContatos();
-        }else{
+        }
+        if(opcao==2){
             listarContatos();
         }
-
 
         sc.close();
     }
@@ -47,15 +51,16 @@ public class AgendaApplication {
     }
 
     public static void listarContatos(){
-        System.out.println("|----------------------------------------|");
+        System.out.println("|-----------------------------------------|");
         System.out.println("|------------ Lista de contatos ----------|");
+        System.out.println("|-----------------------------------------|");
+        // aqui ele vai ler cada contato da lista de contatos e com base nisso, vai puxar a informação de cada contato e exibir na tela
         for(Contatos contato : ContatosDAO.getContatos()){
-            System.out.println("|----------------------------------------|");
             System.out.println("| ID: " + contato.getId());
             System.out.println("| Nome: " + contato.getNome());
             System.out.println("| Telefone: " + contato.getTelefone());
             System.out.println("| Email: " + contato.getEmail());
-            System.out.println("|----------------------------------------|");
+            System.out.println("|-----------------------------------------|");
         }
     }
 }
