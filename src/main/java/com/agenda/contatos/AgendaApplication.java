@@ -21,7 +21,7 @@ public class AgendaApplication {
         if(opcao ==1){
             cadastrarContatos();
         }else{
-            // listarContatos();
+            listarContatos();
         }
 
 
@@ -46,7 +46,16 @@ public class AgendaApplication {
         sc.close();
     }
 
-    // public static void listarContatos() throws SQLException {
-    //     ContatosDAO.listaContatos();
-    // }
+    public static void listarContatos(){
+        System.out.println("|----------------------------------------|");
+        System.out.println("|------------ Lista de contatos ----------|");
+        for(Contatos contato : ContatosDAO.getContatos()){
+            System.out.println("|----------------------------------------|");
+            System.out.println("| ID: " + contato.getId());
+            System.out.println("| Nome: " + contato.getNome());
+            System.out.println("| Telefone: " + contato.getTelefone());
+            System.out.println("| Email: " + contato.getEmail());
+            System.out.println("|----------------------------------------|");
+        }
+    }
 }

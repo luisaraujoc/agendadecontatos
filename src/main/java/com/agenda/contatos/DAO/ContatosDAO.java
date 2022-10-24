@@ -8,12 +8,8 @@ import com.mysql.cj.jdbc.ConnectionImpl;
 import com.mysql.cj.jdbc.ClientPreparedStatement;
 
 import java.sql.ResultSet;
-// import java.sql.Connection;
-// import java.sql.Date;
-// import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ContatosDAO {
     
@@ -33,5 +29,53 @@ public class ContatosDAO {
         }
     }
 
-    
+    public static List<Contatos> getContatos() {
+        String sql = "SELECT * FROM contatos";
+        List<Contatos> lContatos = new ArrayList<Contatos>();
+
+        ConnectionImpl conn = null;
+        ClientPreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try{
+            conn = Connection.getConnection();
+            stmt = (ClientPreparedStatement) conn.prepareStatement(sql);
+
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                Contatos contato = new Contatos();
+                contato.setId(rs.getInt("idContato"));
+                contato.setNome(rs.getString("nome"));
+                contato.setTelefone(rs.getString("telefone"));
+                contato.setEmail(rs.getString("email"));
+                lContatos.add(contato);
+            }
+        }catch (SQLException e){
+                System.out.println("Erro ao buscar contatos: " + e);
+            }finally{
+                if(rs != null){
+                    try{
+                        rs.close();
+                    }catch (SQLException e){
+                        System.out.println("Erro ao fechar o ResultSet: " + e);
+                    }
+                }
+                if(stmt != null){
+                    try{
+                        stmt.close();
+                    }catch (SQLException e){
+                        System.out.println("Erro ao fechar o Statement: " + e);
+                    }
+                }
+                if(conn != null){
+                    try{
+                        conn.close();
+                    }catch (SQLException e){
+                        System.out.println("Erro ao fechar a conexão: " + e);
+                    }
+                }
+            }
+            return lContatos;
+    }       
 }
