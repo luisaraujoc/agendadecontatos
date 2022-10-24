@@ -24,9 +24,27 @@ public class AgendaApplication {
 
         if(opcao==1){
             cadastrarContatos();
+
+            // System.out.println("Contato cadastrado com sucesso!");
+            // System.out.println("Deseja cadastrar outro contato? (S/N)");
+            // String opcao2 = sc.next();
+            // if(opcao2.equals("S")){
+            //     cadastrarContatos();
+            // }else{
+            //     System.out.println("Obrigado por usar nossa agenda!");
+            // }
         }
-        if(opcao==2){
+        else if(opcao==2){
             listarContatos();
+            // System.out.println("Deseja cadastrar um contato? (S/N)");
+            // String opcao2 = sc.next();
+            // if(opcao2.equals("S")){
+            //     cadastrarContatos();
+            // }else{
+            //     System.out.println("Obrigado por usar nossa agenda!");
+            // }
+        }else {
+            System.out.println("Opção inválida!");
         }
 
         sc.close();
